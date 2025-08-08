@@ -1,5 +1,5 @@
 sealed class AppDimensions {
-  
+  // Spacing
   static const double s1 = 4.0;
   static const double s2 = 8.0;
   static const double s3 = 12.0;
@@ -10,7 +10,7 @@ sealed class AppDimensions {
   static const double l2 = 40.0;
   static const double l3 = 59.5;
   static const double xl = 64.0;
-  
+  static const double s10= 10.0;
 
   // Border Radius
   static const double radiusS = 4.0;
@@ -18,9 +18,9 @@ sealed class AppDimensions {
   static const double radiusL = 16.0;
 
   // Icon Sizes
-  static const double iconS = 16.0;
-  static const double iconM = 24.0;
-  static const double iconL = 32.0;
+  static const double iconS = 11.0;
+  static const double iconM = 16.0;
+  static const double iconL = 32.0; 
 
   // Heights
   static const double buttonHeight = 48.0;
@@ -33,4 +33,9 @@ sealed class AppDimensions {
 
   // Divider
   static const double divider = 1.0;
+
+  // Border Widths
+  static const double borderThin = 1.0;
+  static const double borderMedium = 1.8;
+  static const double borderThick = 2.0;
 }

@@ -3,3 +3,5 @@ enum StepperStatus{
   guestSetup,
   itinerarySetup,
 }
+
+enum ActionButtonType { filled, outlined }
