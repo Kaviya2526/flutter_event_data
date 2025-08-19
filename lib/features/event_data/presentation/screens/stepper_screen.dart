@@ -22,6 +22,7 @@ class _StepperScreenState extends State<StepperScreen> {
   StepperStatus _currentStep = StepperStatus.eventData;
   final List<StepperStatus> _steps = StepperStatus.values;
   bool isOneDayEvent = false;
+
   int get currentIndex => _steps.indexOf(_currentStep);
 
   @override
@@ -169,27 +170,27 @@ class _StepperScreenState extends State<StepperScreen> {
               const SizedBox(height: AppDimensions.s3),
               const CustomTextField(hintText: AppConstants.locationMapUrl),
               const SizedBox(height: AppDimensions.m2),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: ActionButton(
-                        label: AppConstants.cancel,
-                        onPressed: () {},
-                        type: ActionButtonType.outlined,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: AppDimensions.m1),
-                  Expanded(
-                    child: ActionButton(
-                      label: AppConstants.next,
-                      onPressed: () {},
-                      type: ActionButtonType.filled,
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: GestureDetector(
+                  //     onTap: () {},
+                  //     child: ActionButton(
+                  //       label: AppConstants.cancel,
+                  //       onPressed: () {},
+                  //       type: ActionButtonType.outlined,
+                  //     ),
+                  //   ),
+                  // ),
+                  SizedBox(width: AppDimensions.m1),
+                  // Expanded(
+                  //   child: ActionButton(
+                  //     label: AppConstants.next,
+                  //     onPressed: () {},
+                  //     type: ActionButtonType.filled,
+                  //   ),
+                  // ),
                 ],
               )
             ],

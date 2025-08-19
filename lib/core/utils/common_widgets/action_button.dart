@@ -1,76 +1,81 @@
 import 'package:flutter/material.dart';
 
-import '../../../features/event_data/domain/usecases/stepper.dart';
-import '../../theme/app_colors.dart';
-
+enum ElevatedButtonState {
+  active,
+  disable,
+}
 
 class ActionButton extends StatelessWidget {
-  final String label;
-  final VoidCallback onPressed;
-  final ActionButtonType type;
-
   const ActionButton({
     super.key,
-    required this.label,
     required this.onPressed,
-    this.type = ActionButtonType.filled,
+    required this.label,
+    this.buttonState = ElevatedButtonState.disable,
+    this.backgroundColor,
+    this.labelColor,
+    this.width,
+    this.height,
+    this.borderColor,
+    this.disabledBackgroundColor,
+    this.side,
+    this.textStyle,
+    this.padding,
+    this.suffixIcon,
   });
+
+  final ElevatedButtonState buttonState;
+  final VoidCallback? onPressed;
+  final String label;
+  final Color? backgroundColor;
+  final Color? labelColor;
+  final double? width;
+  final double? height;
+  final Color? borderColor;
+  final Color? disabledBackgroundColor;
+  final BorderSide? side;
+  final TextStyle? textStyle;
+  final Widget? suffixIcon;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
-    if (type == ActionButtonType.outlined) {
-      return Container(
-        decoration: BoxDecoration(
-          gradient: AppColors.vividGradient,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        padding: const EdgeInsets.all(1.5), 
-        child: Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: ShaderMask(
-            shaderCallback: (bounds) => AppColors.vividGradient.createShader(bounds),
-            blendMode: BlendMode.srcIn,
-            child: Text(
-              label,
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return SizedBox(
+      width: width,
+      height: height,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          disabledBackgroundColor: disabledBackgroundColor ??
+              colorScheme.primary.withValues(alpha: 0.10),
+          backgroundColor: backgroundColor ??
+              (ElevatedButtonState.active == buttonState
+                  ? colorScheme.primary
+                  : colorScheme.primary.withValues(alpha: 0.10)),
+          padding: padding ?? const EdgeInsets.symmetric(vertical: 11),
+          side: side ??
+              BorderSide(
+                color: borderColor ?? Colors.transparent,
+                width: 0.5,
               ),
-            ),
-          ),
         ),
-      );
-    } else {
-      return Container(
-        decoration: BoxDecoration(
-          gradient: AppColors.vividGradient,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: ElevatedButton(
-          onPressed: onPressed,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            shadowColor: Colors.transparent,
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              label,
+              style: (textStyle ?? theme.textTheme.bodyMedium)
+                  ?.copyWith(color: labelColor ?? colorScheme.onPrimary),
             ),
-          ),
-          child: const Text(
-            'Next',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
-            ),
-          ),
+            if (suffixIcon != null) suffixIcon!,
+          ],
         ),
-      );
-    }
+      ),
+    );
   }
 }

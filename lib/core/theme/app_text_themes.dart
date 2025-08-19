@@ -1,6 +1,7 @@
 import 'package:event_data/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/constants/app_constants.dart';
 
 TextTheme createTextTheme(BuildContext context, String fontFamily) {
   final textTheme = Theme.of(context).textTheme;
@@ -70,4 +71,26 @@ TextTheme createTextTheme(BuildContext context, String fontFamily) {
       fontWeight: FontWeight.w400,
     ),
   );
+}
+
+extension CustomTextTheme on TextTheme {
+  TextStyle get bodyExtraLarge => const TextStyle(
+        fontSize: 22,
+        fontFamily: '${AppConstants.fontFamily}_Bold',
+      );
+
+  TextStyle get noteLarge => const TextStyle(
+        fontSize: 10,
+        fontFamily: '${AppConstants.fontFamily}_SemiBold',
+      );
+
+  TextStyle get noteMedium => const TextStyle(
+        fontSize: 10,
+        fontFamily: '${AppConstants.fontFamily}_Medium',
+      );
+
+  TextStyle get noteSmall => const TextStyle(
+        fontSize: 10,
+        fontFamily: '${AppConstants.fontFamily}_Regular',
+      );
 }
